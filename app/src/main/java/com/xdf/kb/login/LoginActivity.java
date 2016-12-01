@@ -75,8 +75,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Set up the login form.
-        populateAutoComplete();
         x.view().inject(this);
+        populateAutoComplete();
         initUserName();
     }
 
@@ -301,7 +301,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private void jumToMainPage() {
         Intent intent = new Intent(this, MainPageActivity.class);
         startActivity(intent);
-//        finish();
+        finish();
     }
 
 

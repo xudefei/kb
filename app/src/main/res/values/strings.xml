@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">kb</string>
+    <string name="app_name">跬步</string>
     <string name="title_activity_login">登录</string>
     <string name="title_activity_main">主页</string>
+    <string name="title_activity_alipay">支付宝</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">邮箱</string>
@@ -18,6 +19,8 @@
 
     <string-array name="main_page_menus">
         <item>支付宝demo</item>
-        <item>为虚拟demo</item>
+        <item>微信支付demo</item>
+        <item>RxJava demo</item>
+        <item>xUtils demo</item>
     </string-array>
 </resources>

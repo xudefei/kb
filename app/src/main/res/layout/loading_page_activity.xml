@@ -16,5 +16,15 @@
         android:text="KuiBu"
         android:textColor="@color/themeColor"
         android:textSize="80sp"
-        android:textStyle="bold" />
+        android:typeface="serif"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="积小流，以成江海；积跬步，以至千里。"
+        android:textColor="@color/themeColor"
+        android:typeface="serif" />
 </RelativeLayout>

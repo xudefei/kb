@@ -23,17 +23,21 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login"
+            android:name=".base.BaseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:label="@string/title_activity_login" />
 
         <activity
             android:name=".main.MainPageActivity"
-            android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:label="@string/title_activity_main" />
+        <activity android:name=".alipaydemo.AlipayDemoMainActivity"
+            android:label="@string/title_activity_alipay"/>
+
     </application>
 
 </manifest>

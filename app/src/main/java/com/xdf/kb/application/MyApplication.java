@@ -12,9 +12,9 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         x.Ext.init(this);
         // 开启调试
         x.Ext.setDebug(BuildConfig.DEBUG);
-        super.onCreate();
     }
 }

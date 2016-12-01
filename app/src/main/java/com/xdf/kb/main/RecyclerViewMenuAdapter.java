@@ -2,12 +2,16 @@ package com.xdf.kb.main;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xdf.kb.R;
+import com.xdf.kb.comm.myinterface.MyOnRecyclerItemClickListener;
 import com.xdf.kb.utils.ColorUtils;
 
 import java.util.List;
@@ -15,9 +19,14 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/11/30 0030.
  */
-public class RecyclerViewMenuAdapter extends RecyclerView.Adapter {
+public class RecyclerViewMenuAdapter extends RecyclerView.Adapter<RecyclerViewMenuAdapter.ViewHolder> {
     private Activity activity;
     private List<String> list;
+    private MyOnRecyclerItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(MyOnRecyclerItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public RecyclerViewMenuAdapter(Activity activity, List<String> datas) {
         this.activity = activity;
@@ -25,13 +34,25 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.main_page_recycler_view_menu_item, parent));
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+        ViewHolder holder = new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.main_page_recycler_view_menu_item, null));
+        holder.setOnClicListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    if (v.getTag() != null) {
+                        onItemClickListener.onRecyclerItemClick(parent,v,(int)v.getTag());
+                    }
+
+                }
+            }
+        });
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder) holder).setData(position);
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.setData(position);
     }
 
     @Override
@@ -39,23 +60,27 @@ public class RecyclerViewMenuAdapter extends RecyclerView.Adapter {
         return list == null ? 0 : list.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    protected class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
+        private View mView;
 
-        public ViewHolder(View itemView) {
+        protected void setOnClicListener(View.OnClickListener clicListener) {
+            mView.setOnClickListener(clicListener);
+        }
+        ViewHolder(View itemView) {
             super(itemView);
+            mView = itemView;
             int width = activity.getWindowManager().getDefaultDisplay().getWidth();
             textView = (TextView) itemView.findViewById(R.id.text);
-            ViewGroup.LayoutParams params = itemView.getLayoutParams();
             itemView.setBackgroundColor(ColorUtils.getRandomColor());
             //设置图片的相对于屏幕的宽高比
-            params.width = width / 3;
-            params.height = (int) (200 + Math.random() * 400);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width / 3,(int) (200 + Math.random() * 200));
             itemView.setLayoutParams(params);
         }
 
         public void setData(int position) {
-            textView.setText(position);
+            textView.setText(list.get(position));
+            mView.setTag(position);
         }
     }
 }

@@ -3,15 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="asdasdasd"/>
+        android:text="asdasdasd"/>-->
 
-  <!--  <android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_menu"
         android:layout_width="match_parent"
-        android:background="@color/themeColor"
         android:layout_height="match_parent"
-        android:visibility="gone"/>-->
+        android:visibility="visible"/>
 </LinearLayout>
