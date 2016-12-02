@@ -33,15 +33,23 @@ import java.util.Map;
 
 @ContentView(R.layout.activity_alipay_demo_main)
 public class AlipayDemoMainActivity extends BaseActivity {
-    /** 支付宝支付业务：入参app_id */
-    public static final String APPID = "2016102400754147";
+    /**
+     * 支付宝支付业务：入参app_id
+     */
+    public static final String APPID = "2016120203721148";
 
-    /** 支付宝账户登录授权业务：入参pid值 */
+    /**
+     * 支付宝账户登录授权业务：入参pid值
+     */
     public static final String PID = "2088102180941790";
-    /** 支付宝账户登录授权业务：入参target_id值 */
+    /**
+     * 支付宝账户登录授权业务：入参target_id值
+     */
     public static final String TARGET_ID = "2016102400754147";
 
-    /** 商户私钥，pkcs8格式 */
+    /**
+     * 商户私钥，pkcs8格式
+     */
     public static final String RSA_PRIVATE = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAK1CCiTVjwRs5SWI"
             + "hCRf8EQBK4dcgkEKNeAO2nqNYfjo5pv9NR3/9F6WECogJwmiHS7CeD5NDlgNbTPs"
             + "P9ASLQ/UP/YsTEkFPDwEV4P9Ioq4BxYrOARr1D9j75W4Bq1hkIiuT5DZ3GsgGLl+"
@@ -58,7 +66,6 @@ public class AlipayDemoMainActivity extends BaseActivity {
 
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
-
 
 
     @SuppressLint("HandlerLeak")
@@ -108,7 +115,9 @@ public class AlipayDemoMainActivity extends BaseActivity {
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
 
 
@@ -210,7 +219,6 @@ public class AlipayDemoMainActivity extends BaseActivity {
 
     /**
      * get the sdk version. 获取SDK版本号
-     *
      */
     public void getSDKVersion() {
         PayTask payTask = new PayTask(this);
@@ -271,7 +279,7 @@ public class AlipayDemoMainActivity extends BaseActivity {
         authV2(v);
     }
 
-    @Event(R.id.ali_web_to_native_demo)
+    @Event(type = View.OnClickListener.class, value = R.id.ali_web_to_native_demo)
     private void aliWeb2Native(View v) {
         h5Pay(v);
     }

@@ -16,6 +16,9 @@ import com.xdf.kb.R;
 import com.xdf.kb.alipaydemo.AlipayDemoMainActivity;
 import com.xdf.kb.base.BaseActivity;
 import com.xdf.kb.comm.myinterface.MyOnRecyclerItemClickListener;
+import com.xdf.kb.rxjavademo.RxjavaDemoActivity;
+import com.xdf.kb.weichatpaydemo.WeichatPayDemoActivity;
+import com.xdf.kb.xutilsdemo.XUtilsDemoActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -59,9 +62,13 @@ public class MainPageActivity extends BaseActivity implements MyOnRecyclerItemCl
                 startNewAcitivity(AlipayDemoMainActivity.class,false);
                 break;
             case 1:
-                // TODO 微信支付Demo
+                startNewAcitivity(WeichatPayDemoActivity.class,false);
                 break;
             case 2://RxjavaDemo
+                startNewAcitivity(RxjavaDemoActivity.class,false);
+                break;
+            case 3:
+                startNewAcitivity(XUtilsDemoActivity.class,false);
                 break;
             default:
                 break;

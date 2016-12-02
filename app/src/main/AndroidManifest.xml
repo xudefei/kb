@@ -6,6 +6,11 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MyApplication"
@@ -37,6 +42,27 @@
             android:label="@string/title_activity_main" />
         <activity android:name=".alipaydemo.AlipayDemoMainActivity"
             android:label="@string/title_activity_alipay"/>
+
+        <activity android:name=".rxjavademo.RxjavaDemoActivity"
+            android:label="@string/title_activity_rxjava"/>
+        <activity android:name=".weichatpaydemo.WeichatPayDemoActivity"
+            android:label="@string/title_activity_weichat_pay"/>
+        <activity android:name=".xutilsdemo.XUtilsDemoActivity"
+            android:label="@string/title_activity_xutils"/>
+        <activity android:name=".alipaydemo.H5PayDemoActivity"/>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
 
     </application>
 

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="KuiBu"
+        android:text="@string/kuibu"
         android:textColor="@color/themeColor"
         android:textSize="80sp"
         android:typeface="serif"/>
@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:text="积小流，以成江海；积跬步，以至千里。"
+        android:text="@string/loading_page_des"
         android:textColor="@color/themeColor"
         android:typeface="serif" />
 </RelativeLayout>
