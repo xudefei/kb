@@ -31,4 +31,5 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile project(':xutils')
     compile files('libs/alipaySdk-20161009.jar')
+    compile files('libs/alipaySdk-20161129.jar')
 }

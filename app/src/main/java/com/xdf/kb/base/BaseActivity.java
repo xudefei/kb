@@ -10,6 +10,7 @@ import org.xutils.x;
 
 /**
  * Created by Administrator on 2016/11/30 0030.
+ * 基础Activity
  */
 public class BaseActivity extends AppCompatActivity {
     @Override

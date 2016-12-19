@@ -6,6 +6,7 @@
     <string name="title_activity_rxjava">RxJava</string>
     <string name="title_activity_weichat_pay">微信支付</string>
     <string name="title_activity_xutils">xUtils</string>
+    <string name="title_activity_permission">Android 权限</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">邮箱</string>
@@ -27,5 +28,6 @@
         <item>微信支付demo</item>
         <item>RxJava demo</item>
         <item>xUtils demo</item>
+        <item>Android6.0 权限</item>
     </string-array>
 </resources>

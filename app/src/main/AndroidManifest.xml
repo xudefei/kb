@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".application.MyApplication"
@@ -63,6 +64,10 @@
             android:exported="false"
             android:screenOrientation="behind" >
         </activity>
+
+        <activity android:name=".permission.PermissionActivity"
+            android:label="@string/title_activity_permission"
+            android:screenOrientation="behind" />
 
     </application>
 

@@ -11,6 +11,7 @@ import org.xutils.view.annotation.ContentView;
 
 /**
  * Created by Administrator on 2016/12/1 0001.
+ * 微信支付Demo
  */
 @ContentView(R.layout.activity_weichat_pay_demo)
 public class WeichatPayDemoActivity extends BaseActivity {
@@ -18,7 +19,7 @@ public class WeichatPayDemoActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getSupportActionBar() != null ) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

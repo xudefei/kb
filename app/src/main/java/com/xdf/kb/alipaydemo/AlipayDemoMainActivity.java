@@ -3,10 +3,12 @@ package com.xdf.kb.alipaydemo;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
+import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.xdf.kb.R;
 import com.xdf.kb.alipaydemo.utils.OrderInfoUtil2_0;
@@ -36,7 +39,7 @@ public class AlipayDemoMainActivity extends BaseActivity {
     /**
      * 支付宝支付业务：入参app_id
      */
-    public static final String APPID = "2016120203721148";
+    public static final String APPID = "2016072900115009";
 
     /**
      * 支付宝账户登录授权业务：入参pid值
@@ -46,23 +49,23 @@ public class AlipayDemoMainActivity extends BaseActivity {
      * 支付宝账户登录授权业务：入参target_id值
      */
     public static final String TARGET_ID = "2016102400754147";
-
     /**
      * 商户私钥，pkcs8格式
      */
-    public static final String RSA_PRIVATE = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAK1CCiTVjwRs5SWI"
-            + "hCRf8EQBK4dcgkEKNeAO2nqNYfjo5pv9NR3/9F6WECogJwmiHS7CeD5NDlgNbTPs"
-            + "P9ASLQ/UP/YsTEkFPDwEV4P9Ioq4BxYrOARr1D9j75W4Bq1hkIiuT5DZ3GsgGLl+"
-            + "WjgBlhYI7Cyw/kJbOfNFLUSyNHVFAgMBAAECgYEAmAFqmOpssXtAh2+AT9GEIIXO"
-            + "RNIazSlCHzOo5wCHxjO/r3e1VH6tTRbnU64l0cPTSqT/jdlZDlOpTXamfcyUju6e"
-            + "9LnGrG+PfiQz5cP9W2bOgqe34hdMgsORTzO5WgvNIDZyhng5qQXRxfxyCji6MRT1"
-            + "r2mT/Un3snYtD7aULHkCQQDeBIxzQRYv5uKUngTUJ99HOak3KmQSSrAn2G4qKSn3"
-            + "w8V6EaPsUHlGSqHCUCVso37597elU4ODklXk8L/OuHJDAkEAx8boSA4i23pZe3g8"
-            + "EGEn9m9eO6BgP683jyKMjhpuXc8YcPx2mXfiyVPwgi+IEQOt0EfP4qDJRRs9ZKe9"
-            + "lg8V1wJAbrj+Aoy3L/SJk2yrI9Muuyq6hVSSy7yL1ZNOfaBB2dq8pYAerEAF+1RF"
-            + "D89Amsl/DdLIt57Ku9dDFwYp4kKCWQJACllYgRsSXTJKXmYNHoAZ9N8yD36wXbwy"
-            + "8ZxFkbr2yq9GwduiPTMDsZBCnkveDZuWLnr53vCbXJQbqxIxdQuVAwJAJ/oD5IbU"
-            + "UtwijcGejWLOFjKrGNLL/CchmABq4HLd0Y8dRevMm90Iha/VmNd1oX3oJUIxTESW" + "J7BPl0QfoAq+Ug==";
+    public static final String RSA_PRIVATE = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAK1CCiTVjwRs5SWI\n" +
+            "hCRf8EQBK4dcgkEKNeAO2nqNYfjo5pv9NR3/9F6WECogJwmiHS7CeD5NDlgNbTPs\n" +
+            "P9ASLQ/UP/YsTEkFPDwEV4P9Ioq4BxYrOARr1D9j75W4Bq1hkIiuT5DZ3GsgGLl+\n" +
+            "WjgBlhYI7Cyw/kJbOfNFLUSyNHVFAgMBAAECgYEAmAFqmOpssXtAh2+AT9GEIIXO\n" +
+            "RNIazSlCHzOo5wCHxjO/r3e1VH6tTRbnU64l0cPTSqT/jdlZDlOpTXamfcyUju6e\n" +
+            "9LnGrG+PfiQz5cP9W2bOgqe34hdMgsORTzO5WgvNIDZyhng5qQXRxfxyCji6MRT1\n" +
+            "r2mT/Un3snYtD7aULHkCQQDeBIxzQRYv5uKUngTUJ99HOak3KmQSSrAn2G4qKSn3\n" +
+            "w8V6EaPsUHlGSqHCUCVso37597elU4ODklXk8L/OuHJDAkEAx8boSA4i23pZe3g8\n" +
+            "EGEn9m9eO6BgP683jyKMjhpuXc8YcPx2mXfiyVPwgi+IEQOt0EfP4qDJRRs9ZKe9\n" +
+            "lg8V1wJAbrj+Aoy3L/SJk2yrI9Muuyq6hVSSy7yL1ZNOfaBB2dq8pYAerEAF+1RF\n" +
+            "D89Amsl/DdLIt57Ku9dDFwYp4kKCWQJACllYgRsSXTJKXmYNHoAZ9N8yD36wXbwy\n" +
+            "8ZxFkbr2yq9GwduiPTMDsZBCnkveDZuWLnr53vCbXJQbqxIxdQuVAwJAJ/oD5IbU\n" +
+            "UtwijcGejWLOFjKrGNLL/CchmABq4HLd0Y8dRevMm90Iha/VmNd1oX3oJUIxTESW\n" +
+            "J7BPl0QfoAq+Ug==";
 
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
@@ -116,15 +119,14 @@ public class AlipayDemoMainActivity extends BaseActivity {
                     break;
             }
         }
-
-        ;
     };
 
 
     /**
      * 支付宝支付业务
+     * 返回ali20247 错误的原因是没有签约APP支付功能
      *
-     * @param v
+     * @param v 被点击的视图
      */
     public void payV2(View v) {
         if (TextUtils.isEmpty(APPID) || TextUtils.isEmpty(RSA_PRIVATE)) {
@@ -172,7 +174,7 @@ public class AlipayDemoMainActivity extends BaseActivity {
     /**
      * 支付宝账户授权业务
      *
-     * @param v
+     * @param v 被点击的视图
      */
     public void authV2(View v) {
         if (TextUtils.isEmpty(PID) || TextUtils.isEmpty(APPID) || TextUtils.isEmpty(RSA_PRIVATE)
@@ -220,6 +222,7 @@ public class AlipayDemoMainActivity extends BaseActivity {
     /**
      * get the sdk version. 获取SDK版本号
      */
+    @SuppressWarnings("unused")
     public void getSDKVersion() {
         PayTask payTask = new PayTask(this);
         String version = payTask.getVersion();
@@ -229,7 +232,7 @@ public class AlipayDemoMainActivity extends BaseActivity {
     /**
      * 原生的H5（手机网页版支付切natvie支付） 【对应页面网页支付按钮】
      *
-     * @param v
+     * @param v 被点击的视图
      */
     public void h5Pay(View v) {
         Intent intent = new Intent(this, H5PayDemoActivity.class);
@@ -246,13 +249,14 @@ public class AlipayDemoMainActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setLogo(getResources().getDrawable(R.drawable.msp_demo_title));
+            actionBar.setLogo(getResources().getDrawable(R.drawable.msp_demo_title, getTheme()));
         }
 
     }
@@ -271,16 +275,19 @@ public class AlipayDemoMainActivity extends BaseActivity {
 
     @Event(R.id.alipay_demo)
     private void aliPay(View v) {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         payV2(v);
     }
 
     @Event(R.id.ali_impower_demo)
     private void aliImpower(View v) {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         authV2(v);
     }
 
     @Event(type = View.OnClickListener.class, value = R.id.ali_web_to_native_demo)
     private void aliWeb2Native(View v) {
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         h5Pay(v);
     }
 }
